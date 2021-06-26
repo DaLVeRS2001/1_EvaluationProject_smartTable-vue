@@ -94,6 +94,10 @@ export default {
       this.form[val.name] = val.value;
     },
     addRow() {
+     if (!this.form[key].length) {
+          this.clickedHandle();
+          return;
+        }
       for (let val in this.validations) {
         if (this.validations[val].errorM) return;
       }
