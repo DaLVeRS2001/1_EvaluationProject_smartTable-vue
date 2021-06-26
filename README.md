@@ -1,4 +1,4 @@
-# my-table
+# my-table(filtering, sorting, validation)
 
 ## Project setup
 ```
