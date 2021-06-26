@@ -90,16 +90,16 @@ export default {
     clickedHandle() {
       this.clicked = !this.clicked;
     },
-    setValue(val) {
-      this.form[val.name] = val.value;
+    setValue(key) {
+      this.form[key.name] = key.value;
     },
     addRow() {
-     if (!this.form[key].length) {
+      for (let key in this.validations) {
+      if (!this.form[key].length) {
           this.clickedHandle();
           return;
         }
-      for (let val in this.validations) {
-        if (this.validations[val].errorM) return;
+        if (this.validations[key].errorM) return;
       }
       this.clickedHandle();
       const data = {
@@ -124,8 +124,8 @@ export default {
       deep: true,
       handler(value) {
         const v = this.validations;
-        for (let val in this.validations) {
-          v[val].errorM = isRequired(value[val]);
+        for (let key in this.validations) {
+          v[key].errorM = isRequired(value[key]);
         }
         if (!v.firstName.errorM) {
           v.firstName.errorM = onlyLetterValidator(value.firstName);
