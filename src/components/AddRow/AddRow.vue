@@ -94,17 +94,20 @@ export default {
     setValue(key) {
       this.form[key.name] = key.value;
     },
-    closePanel(){
+    closePanel() {
       this.clicked = false;
       for (let key in this.form) {
         this.form[key] = "";
+        this.validations[key].errorM = "";
       }
     },
     addRow() {
-      for (let key in this.validations) {
+      for (let key in this.form) {
         if (!this.form[key].length) {
-          return;
+          this.validations[key].errorM = isRequired(this.form[key]);
         }
+      }
+      for (let key in this.validations) {
         if (this.validations[key].errorM) return;
       }
 
@@ -120,7 +123,7 @@ export default {
         },
       };
       this.$emit("addRow", data);
-      this.closePanel()
+      this.closePanel();
     },
   },
   watch: {
@@ -130,18 +133,20 @@ export default {
     form: {
       deep: true,
       handler(value) {
-        const v = this.validations;
-        for (let key in this.validations) {
-          v[key].errorM = isRequired(value[key]);
-        }
-        if (!v.firstName.errorM) {
-          v.firstName.errorM = onlyLetterValidator(value.firstName);
-        }
-        if (!v.lastName.errorM) {
-          v.lastName.errorM = onlyLetterValidator(value.lastName);
-        }
-        if (!v.phone.errorM) {
-          v.phone.errorM = phoneValidator(value.phone);
+        if (this.clicked) {
+          const v = this.validations;
+          for (let key in this.validations) {
+            v[key].errorM = isRequired(value[key]);
+          }
+          if (!v.firstName.errorM) {
+            v.firstName.errorM = onlyLetterValidator(value.firstName);
+          }
+          if (!v.lastName.errorM) {
+            v.lastName.errorM = onlyLetterValidator(value.lastName);
+          }
+          if (!v.phone.errorM) {
+            v.phone.errorM = phoneValidator(value.phone);
+          }
         }
       },
     },
