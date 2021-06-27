@@ -127,7 +127,7 @@ export default {
     },
 
     onRowSelect(idx) {
-      this.selectedRow = this.sortedData[idx];
+      this.selectedRow = this.data[idx];
     },
 
     modeSelectedHandle(modeData) {
