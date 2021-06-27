@@ -49,6 +49,7 @@
 
         <div class="field">
           <button>Добавить в таблицу</button>
+          <button @click="closePanel">X</button>
         </div>
       </div>
     </form>
@@ -93,15 +94,20 @@ export default {
     setValue(key) {
       this.form[key.name] = key.value;
     },
+    closePanel(){
+      this.clicked = false;
+      for (let key in this.form) {
+        this.form[key] = "";
+      }
+    },
     addRow() {
       for (let key in this.validations) {
-      if (!this.form[key].length) {
-          this.clickedHandle();
+        if (!this.form[key].length) {
           return;
         }
         if (this.validations[key].errorM) return;
       }
-      this.clickedHandle();
+
       const data = {
         ...this.form,
         description:
@@ -114,6 +120,7 @@ export default {
         },
       };
       this.$emit("addRow", data);
+      this.closePanel()
     },
   },
   watch: {
