@@ -1,26 +1,3 @@
-# my-table(filtering, sorting, validation)
+# Оценочный проект #1 на vue.js
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-"# task_smartTable_OnVueJS" 
-"# task_smartTable_OnVueJS" 
+#### ✔ The project is an evaluation one. This is an EVALUATION project. (Проект является оценочным. Это ОЦЕНОЧНЫЙ проект) ✔
